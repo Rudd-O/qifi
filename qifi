@@ -1,0 +1,13 @@
+#!/usr/bin/python3
+
+import sys, subprocess
+
+def quote(s):
+    return '"' + s.replace('"', '\\"') + '"'
+
+
+pattern = "WIFI:S:{ssid};T:WPA;P:{password};;"
+d = {'ssid': sys.argv[1], 'password': sys.argv[2]}
+text = pattern.format(**d)
+cmd = ['qrencode', '-t', 'ANSIUTF8', text]
+sys.exit(subprocess.call(cmd))
